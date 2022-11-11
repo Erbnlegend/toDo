@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>To Do's</title>
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <div id="header">Get Stuff Done</div>
+            
+            <div id="info">
+                <div id="back">Back</div>
+                <div id="currentPlace">What are you working on today?</div>
+            </div>
+
+            <div id="cards">
+            </div>
+
+            <form id="categoryForm" class="swipeRight" action="" method="post">
+                <div>Add New Category</div>
+                <div id="closeCat">X</div>
+                <fieldset>
+                    <input id="category" type="text" name="category">
+                </fieldset>
+                <fieldset>
+                    <input type="submit" id="addNewCategory">
+                </fieldset>
+            </form>
+            <form id="cardForm" class="swipeRight" action="" method="post">
+                <div>Add a New Card to your Category</div>
+                <div id="closeCard">X</div>
+                <fieldset>
+                    <label for="category">Category</label>
+                    <input id="ifEditing" type="text" name="category" value="" readonly disabled>
+                </fieldset>
+                <fieldset>
+                    <label for="title">Title</label>
+                    <input id="title" type="text" name="title">
+                </fieldset>
+                <fieldset>
+                    <label for="description">Description</label>
+                    <input id="description" type="text" name="description">
+                </fieldset>
+                <fieldset>
+                    <label for="date">Due Date</label>
+                    <input id="date" type="date" name="date">
+                </fieldset>
+                <fieldset>
+                    <input type="submit" id="addNewCard">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="runtime.js"></script>
+<script src="bundle.js"></script>
+</html>
