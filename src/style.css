@@ -104,6 +104,10 @@ body, button {
     text-align: center;
     box-shadow: var(--main-box-shadow);
 }
+.removeButton:hover {
+    cursor: pointer;
+    scale: 1.09;
+}
 
 #closeCard:hover, #closeCat:hover {
     cursor: pointer;

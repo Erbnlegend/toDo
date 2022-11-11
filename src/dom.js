@@ -13,7 +13,8 @@ const DOMElements = {
     currentPlace: document.getElementById('currentPlace'),
     back: document.getElementById('back'),
     closeCard: document.getElementById('closeCard'),
-    closeCat: document.getElementById('closeCat')
+    closeCat: document.getElementById('closeCat'),
+    removeButton: document.querySelectorAll('.removeButton')
 }
 
 export {DOMElements}
