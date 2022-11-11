@@ -3,10 +3,6 @@ import {showCategoryForm, showCardForm} from './UIController'
 import {removeCategory, removeInnerCard} from './remove'
 
 function displayCategories(board) {
-    if(board.reset) {
-        board.reset = false
-        return
-    }
     DOMElements.cards.innerHTML = ""
     DOMElements.currentPlace.innerHTML = `What are you working on today?`
     let randomColor = Math.floor(Math.random()*16777215).toString(16);
