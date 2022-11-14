@@ -1,7 +1,8 @@
 import {DOMElements} from './dom'
 import {showCategoryForm} from './UIController'
-import {removeCategory, } from './remove'
+import {removeCategory } from './remove'
 import {edit, submitChange} from './edit'
+import {displayInnerCards} from './displayCards'
 
 function displayCategories(board) {
     DOMElements.cards.innerHTML = ""
@@ -92,7 +93,7 @@ function displayCategories(board) {
             removeCategory(e, board, item)
         })
         createNewCard.addEventListener('click', function(e) {
-            displayInnerCategories(board[item], board, e.target.style.backgroundColor)
+            displayInnerCards(board[item], board, e.target.style.backgroundColor)
         })
         DOMElements.cards.append(createNewCard)
         DOMElements.category.value = ""
