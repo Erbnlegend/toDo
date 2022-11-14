@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <script src="feather.min.js"></script>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <title>To Do's</title>
 </head>
@@ -27,11 +28,12 @@
                 <div>Add New Category</div>
                 <div id="closeCat">X</div>
                 <fieldset>
-                    <input id="category" type="text" name="category">
+                    <input id="category" type="text" name="category" required minlength="1">
                 </fieldset>
                 <fieldset>
                     <input type="submit" id="addNewCategory">
                 </fieldset>
+                <div id="createCatError"></div>
             </form>
             <form id="cardForm" class="swipeRight" action="" method="post">
                 <div>Add a New Card to your Category</div>
@@ -42,7 +44,7 @@
                 </fieldset>
                 <fieldset>
                     <label for="title">Title</label>
-                    <input id="title" type="text" name="title">
+                    <input id="title" type="text" name="title" required minlength="1">
                 </fieldset>
                 <fieldset>
                     <label for="description">Description</label>
@@ -55,10 +57,15 @@
                 <fieldset>
                     <input type="submit" id="addNewCard">
                 </fieldset>
+                <div id="createCardError"></div>
+            </form>
             </form>
         </div>
     </div>
 </body>
+<script>
+
+</script>
 <script src="runtime.js"></script>
 <script src="bundle.js"></script>
 </html>
