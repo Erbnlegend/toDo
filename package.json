@@ -29,6 +29,8 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
+    "feather-icons": "^4.29.0",
     "normalize.css": "^8.0.1"
   }
 }

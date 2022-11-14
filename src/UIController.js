@@ -32,4 +32,20 @@ function showCardForm() {
     }
 }
 
+// function showUpdateCardForm() {
+//     if(DOMElements.updateCardForm.classList.contains('swipeRight')) {
+//         DOMElements.updateCardForm.classList.toggle('swipeLeft')
+//     }
+//     if(DOMElements.updateCardForm.classList.contains('swipeLeft')) {
+//         DOMElements.updateCardForm.classList.toggle('swipeRight')
+//     }
+//     if(DOMElements.updateCardForm.classList.contains('swipeRight') && DOMElements.cardForm.classList.contains('swipeLeft')) {
+//         DOMElements.updateCardForm.classList.toggle('swipeRight')
+//         DOMElements.updateCardForm.classList.toggle('swipeLeft')
+//         setTimeout(() => {
+//             DOMElements.updateCardForm.classList.toggle('swipeRight')
+//         }, 200);
+//     }
+// }
+
 export {showCategoryForm, showCardForm }

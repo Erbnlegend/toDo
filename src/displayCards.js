@@ -1,93 +1,99 @@
 import {DOMElements} from './dom'
-import {showCategoryForm, showCardForm} from './UIController'
-import {removeCategory, removeInnerCard} from './remove'
+import {showCardForm} from './UIController'
+import {removeInnerCard} from './remove'
+import {editCard, submitChangeCard} from './edit'
 
-function displayCategories(board) {
+function displayInnerCards(category, board, randomColor) {
+    DOMElements.currentPlace.innerHTML = `What part of ${category.category} are you working on today?`
     DOMElements.cards.innerHTML = ""
-    DOMElements.currentPlace.innerHTML = `What are you working on today?`
-    let randomColor = Math.floor(Math.random()*16777215).toString(16);
-    const button = document.createElement('div')
-    button.setAttribute('class', 'card add')
-    button.style.backgroundColor = `#${randomColor}50`;
-    button.addEventListener('click', showCategoryForm)
-    button.innerHTML = "+ Add"
-
-    for(let item in board.allCategories) {
-        randomColor = Math.floor(Math.random()*16777215).toString(16);
-        const createNewCard = document.createElement('div')
-        const displayNumber = document.createElement('div')
-        // Remove
-        const removeButton = document.createElement('div')
-        removeButton.setAttribute('class', 'removeButton')
-        removeButton.setAttribute('data-category', item)
-        removeButton.innerHTML = "X"
-
-        // Number in category array
-        displayNumber.setAttribute('class', 'numberRound')
-        displayNumber.innerHTML = board.allCategories[item].length
-        displayNumber.style.backgroundColor = `#${randomColor}80`;
-        displayNumber.setAttribute('data-category', item)
-
-        // Entire new Card
-        createNewCard.style.backgroundColor = `#${randomColor}60`;
-        createNewCard.innerHTML = item
-        createNewCard.setAttribute('class', 'card')
-        createNewCard.setAttribute('data-category', item)
-        createNewCard.append(removeButton)
-        createNewCard.append(displayNumber)
-        removeButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-        })
-        removeButton.addEventListener('click', function(e) {
-            removeCategory(e, board, item)
-        })
-        createNewCard.addEventListener('click', function(e) {
-            displayInnerCategories(e, board, e.target.style.backgroundColor)
-        })
-        DOMElements.cards.append(createNewCard)
-        DOMElements.category.value = ""
-
-    }
-    DOMElements.cards.append(button)
-}
-
-function displayInnerCategories(e, board, randomColor) {
-    let category = ''
-
-    // Checks where the function was called from (remove or event click)
-    if(board.allCategories.hasOwnProperty(e)) {
-        category = e
-    }
-    else {
-        category = e.target.dataset.category
-    }
-
-    DOMElements.currentPlace.innerHTML = `What part of ${category} are you working on today?`
-    DOMElements.cards.innerHTML = ""
-
+    
     // Add + Button
     const button = document.createElement('div')
     button.setAttribute('class', 'card')
-    button.setAttribute('data-category', category)
-    DOMElements.addNewCard.setAttribute('data-category', category)
+    button.setAttribute('data-category', category.category)
+    DOMElements.addNewCard.setAttribute('data-category', category.category)
     button.style.backgroundColor = `${randomColor}`;
     button.addEventListener('click', showCardForm )
     button.innerHTML = "+ Add"
+
     // Passes Category to Form for editing
-    DOMElements.ifEditing.value = category
-    
-    for(let item in board.allCategories[category]) {
+    DOMElements.ifEditing.value = category.category
+    for(let i = 0; i < category.todo.length; i++) {
+        // New Card Instance
         const createNewCard = document.createElement('div')
+        const createDescription = document.createElement('div')
+        // Card Information Display
+        createDescription.setAttribute('id', `description${i}`)
+        createDescription.innerHTML = category.todo[i].description
+        const createDate = document.createElement('div')
+        createDate.setAttribute('id', `date${i}`)
+        createDate.innerHTML = category.todo[i].date
         createNewCard.style.backgroundColor = `${randomColor}`;
         createNewCard.setAttribute('class', 'card')
-        createNewCard.setAttribute('data-card', item)
 
-        // Remove
+        // Remove Button
         const removeButton = document.createElement('div')
         removeButton.setAttribute('class', 'removeButton')
-        removeButton.setAttribute('data-card', item)
+        removeButton.setAttribute('id', `remove`)
+
+        // Edit Input 
+        const createTitleInput = document.createElement('input')
+        createTitleInput.setAttribute('id', `edit${i}`)
+        createTitleInput.value = category.todo[i].title
+        createTitleInput.style.display = 'none'
+
+        // Edit date Input 
+        const createDateInput = document.createElement('input')
+        createDateInput.setAttribute('id', `editDate${i}`)
+        createDateInput.setAttribute('type', 'date')
+        createDateInput.value = category.todo[i].date
+        createDateInput.style.display = 'none'
+
+        // Edit description Input 
+        const createDescriptionInput = document.createElement('input')
+        createDescriptionInput.setAttribute('id', `editDescription${i}`)
+        createDescriptionInput.value = category.todo[i].description
+        createDescriptionInput.style.display = 'none'
+
+        // Submit Input
+        const submitField = document.createElement('input')
+        submitField.setAttribute('type', 'submit')
+        submitField.setAttribute('value', 'Save')
+        submitField.setAttribute('id', `submit${i}`)
+        submitField.style.display = 'none'
+
+                
+        // Edit Button
+        const editButton = document.createElement('div')
+        editButton.setAttribute('class', 'editButton cardEditButton')
+        editButton.setAttribute('data-category', category.todo[i].title)
+        editButton.setAttribute('id', `editButton${i}`)
+        editButton.innerHTML = '...'
+
+        // pass index number
+        removeButton.setAttribute('data-card', i)
+        createNewCard.setAttribute('data-card', i)
+
+        // Stop Propagation Issues
+        // New Event Listeners
+        submitField.addEventListener('click', function(e){
+            e.preventDefault()
+            e.stopPropagation()
+        })
+        submitField.addEventListener('click', function(e){
+            submitChangeCard(e, board, i, category)
+        })
+        createTitleInput.addEventListener('click', function(e){
+            e.stopPropagation();
+        })
+        editButton.addEventListener('click', function(e){
+            e.stopPropagation();
+        })
+        editButton.addEventListener('click', function(e) {
+            editCard(e, board, i)
+        })
         removeButton.addEventListener('click', function(e) {
-            e.stopPropagation
+            e.stopPropagation();
         })
         removeButton.addEventListener('click', function(e) {
             removeInnerCard(e, board, category)
@@ -95,24 +101,24 @@ function displayInnerCategories(e, board, randomColor) {
         removeButton.innerHTML = "X"
 
         // Creates the card for the array
-        const createTitle = document.createElement('div')
-        const createDescription = document.createElement('div')
-        const createDate = document.createElement('div')
-        const path = board.allCategories[category][item]
-
-        createTitle.innerHTML = path.title
-        createDescription.innerHTML = path.description
-        createDate.innerHTML = path.date
-
-        createNewCard.append(createTitle)
+        const text = document.createElement('div')
+        text.setAttribute('id', i)
+        text.textContent = category.todo[i].title
+        // Make the new Card
+        createNewCard.append(text)
+        createNewCard.append(createTitleInput)
+        createNewCard.append(createDescriptionInput)
+        createNewCard.append(createDateInput)
         createNewCard.append(createDescription)
-        createNewCard.append(removeButton)
         createNewCard.append(createDate)
-        
-        
+        createNewCard.append(submitField)
+        createNewCard.append(editButton)
+        createNewCard.append(removeButton)
+
+        // Append new card
         DOMElements.cards.append(createNewCard)
     }
     DOMElements.cards.append(button)
 }
 
-export {displayCategories, displayInnerCategories}
+export {displayInnerCards}
