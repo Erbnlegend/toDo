@@ -1,231 +1,243 @@
 :root {
-    --game-border: 3px solid rgba(0, 0, 0, 0.637);
-    --header-footer-border: 3px solid rgba(36, 36, 36, 0.753);
-    --main-box-shadow: 0 5px 5px rgba(36, 36, 36, 0.753);
-    --main-color: rgba(36, 36, 36, 0.753);
+  --game-border: 3px solid rgba(0, 0, 0, 0.637);
+  --header-footer-border: 3px solid rgba(36, 36, 36, 0.753);
+  --main-box-shadow: 0 5px 5px rgba(36, 36, 36, 0.753);
+  --main-color: rgba(36, 36, 36, 0.753);
 }
 
-body, button {
-    margin: 0;
-    font-family: 'Poor Story', cursive;
-    font-weight: bolder;
-    color: var(--main-color);
-    overflow-x: hidden;
+body,
+button {
+  margin: 0;
+  font-family: "Poor Story", cursive;
+  font-weight: bolder;
+  color: var(--main-color);
+  overflow-x: hidden;
 }
 
 #cards input {
-    position: relative;
-    width: 99%;
-    text-align: center;
-    padding: 0;
-    margin: 0;
+  position: relative;
+  width: 99%;
+  text-align: center;
+  padding: 0;
+  margin: 0;
 }
-#cards input[type='submit'] {
-    padding: 0;
-    position: relative;
-    left: 30%;
-    width: 50%;
-    font-size: .8em;
+#cards input[type="submit"] {
+  padding: 0;
+  position: relative;
+  left: 30%;
+  width: 50%;
+  font-size: 0.8em;
 }
 
 .background {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #header {
-    font-size: 2em;
-    margin-bottom: 75px;
-    padding: 10px;
+  font-size: 2em;
+  margin-bottom: 75px;
+  padding: 10px;
 }
 
 #info {
-    position: relative;
-    width: 75%;
-    margin: 0 auto;
-    text-align: center;
-    margin-bottom: 50px;
+  position: relative;
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 #back {
-    padding: 10px;
-    font-size: 1.3em;
-    border: var(--game-border);
-    float: left;
-    position: absolute;
+  padding: 10px;
+  font-size: 1.3em;
+  border: var(--game-border);
+  float: left;
+  position: absolute;
 }
 #back:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 #currentPlace {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 2em;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2em;
 }
 
 /* main app area */
 
 #cards {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    width: 75%;
-    margin: 0 auto;
-    gap: 20px;
-    text-align: center;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  width: 75%;
+  margin: 0 auto;
+  gap: 20px;
+  text-align: center;
 }
 .card {
-    border: var(--game-border);
-    padding: 0 5px 5px 0;
-    font-size: 1.5em;
-    box-shadow: var(--main-box-shadow);
+  border: var(--game-border);
+  padding: 0 5px 5px 0;
+  font-size: 1.5em;
+  box-shadow: var(--main-box-shadow);
 }
 .card:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-#closeCard, #closeCat{
-    position: absolute;
-    top: 2%;
-    right: 10%;
-    width: 15px;
-    height: 15px;
-    z-index: 0;
-    font-size: .8em;
-    border: var(--game-border);
-    border-radius: 200%;
-    padding: 5px 5px 10px 5px;
-    text-align: center;
-    box-shadow: var(--main-box-shadow);
+#closeCard,
+#closeCat {
+  position: absolute;
+  top: 2%;
+  right: 10%;
+  width: 15px;
+  height: 15px;
+  z-index: 0;
+  font-size: 0.8em;
+  border: var(--game-border);
+  border-radius: 200%;
+  padding: 5px 5px 10px 5px;
+  text-align: center;
+  box-shadow: var(--main-box-shadow);
 }
 
 .removeButton {
-    position: relative;
-    background-color: rgba(255, 0, 0, 0.568);
-    top: -35%;
-    left: 0;
-    width: 15px;
-    height: 15px;
-    z-index: 0;
-    font-size: .8em;
-    border: var(--game-border);
-    border-radius: 200%;
-    padding: 1px 1px 5px 1px;
-    text-align: center;
-    box-shadow: var(--main-box-shadow);
+  position: relative;
+  background-color: rgba(255, 0, 0, 0.568);
+  top: -35%;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  z-index: 0;
+  font-size: 0.8em;
+  border: var(--game-border);
+  border-radius: 200%;
+  padding: 1px 1px 5px 1px;
+  text-align: center;
+  box-shadow: var(--main-box-shadow);
 }
 .editButton {
-    position: relative;
-    width: 100%;
-    top: -45%;
-    right: -40%;
-    width: 30px;
-    height: 30px;
-    z-index: 0;
-    border-radius: 200%;
+  position: relative;
+  width: 100%;
+  top: -45%;
+  right: -40%;
+  width: 30px;
+  height: 30px;
+  z-index: 0;
+  border-radius: 200%;
 }
 .editCheck {
-    position: relative;
-    bottom: -20%;
-    left: 35%;
-    height: 25px;
-    width: 25px;
+  position: relative;
+  bottom: -20%;
+  left: 35%;
+  height: 25px;
+  width: 25px;
 }
 .greenCompleted {
-    color: green;
+  color: green;
 }
 
 .cardEditButton {
-    top: -60%;
+  top: -60%;
 }
 
 .editButtonReset {
-    z-index: -99;
+  z-index: -99;
 }
 
 #remove {
-    position: relative;
-    top: -90%;
-    left: 0;
+  position: relative;
+  top: -90%;
+  left: 0;
 }
 
 .removeButton:hover {
-    cursor: pointer;
-    scale: 1.09;
+  cursor: pointer;
+  scale: 1.09;
 }
 .editButton:hover {
-    cursor: pointer;
-    scale: 1.11;
+  cursor: pointer;
+  scale: 1.11;
 }
 
-#closeCard:hover, #closeCat:hover {
-    cursor: pointer;
+#closeCard:hover,
+#closeCat:hover {
+  cursor: pointer;
 }
 .add {
-    scale: 1.03;
+  scale: 1.03;
 }
 .add:hover {
-    scale: 1.05;
+  scale: 1.05;
 }
 .numberRound {
-    position: relative;
-    top: 0;
-    left: 45%;
-    width: 15px;
-    height: 15px;
-    z-index: 0;
-    font-size: .8em;
-    border: var(--game-border);
-    border-radius: 200%;
-    padding: 5px;
-    box-shadow: var(--main-box-shadow);
+  position: relative;
+  top: 0;
+  left: 45%;
+  width: 15px;
+  height: 15px;
+  z-index: 0;
+  font-size: 0.8em;
+  border: var(--game-border);
+  border-radius: 200%;
+  padding: 5px;
+  box-shadow: var(--main-box-shadow);
 }
 .numberRound:hover {
-    scale: 1.08;
+  scale: 1.08;
 }
 .swipeRight {
-    animation: swipeRight .4s 1;
-    animation-fill-mode: forwards;
+  animation: swipeRight 0.4s 1;
+  animation-fill-mode: forwards;
 }
 .swipeLeft {
-    animation: swipeLeft .4s 1;
-    animation-fill-mode: forwards;
+  animation: swipeLeft 0.4s 1;
+  animation-fill-mode: forwards;
 }
 fieldset {
-    display: flex;
-    flex-direction: column;
-    border: none;
+  display: flex;
+  flex-direction: column;
+  border: none;
 }
 fieldset label {
-    flex-direction: column;
-    align-items: left;
+  flex-direction: column;
+  align-items: left;
 }
-#categoryForm, #cardForm {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 35%;
-    left: 25%;
-    font-size: 1.5em;
-    background-color: rgba(98, 201, 192, 0.85);
-    border: var(--game-border);
-    padding: 25px;
+#categoryForm,
+#cardForm {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 35%;
+  left: 25%;
+  font-size: 1.5em;
+  background-color: rgba(98, 201, 192, 0.85);
+  border: var(--game-border);
+  padding: 25px;
 }
 .disappear {
-    display: none !important;
+  display: none !important;
 }
 
 /* Animations */
 @keyframes swipeRight {
-    0% { left: 25%; }
-    100% { left: 150% }
+  0% {
+    left: 25%;
+  }
+  100% {
+    left: 150%;
+  }
 }
 @keyframes swipeLeft {
-    0% { left: 130%; }
-    100% { left: 25%; }
+  0% {
+    left: 130%;
+  }
+  100% {
+    left: 25%;
+  }
 }
