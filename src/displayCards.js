@@ -4,7 +4,9 @@ import {removeInnerCard} from './remove'
 import {editCard, submitChangeCard, editCheck} from './edit'
 import { createElement, MoreHorizontal, CheckCircle } from './lucide.js';
 
-function displayInnerCards(category, board, randomColor) {
+function displayInnerCards(category, randomColor) {
+    const boardString = window.localStorage.getItem('board')
+    const board = JSON.parse(boardString)
     DOMElements.currentPlace.innerHTML = `What part of ${category.category} are you working on today?`
     DOMElements.cards.innerHTML = ""
     
@@ -82,17 +84,18 @@ function displayInnerCards(category, board, randomColor) {
         // pass index number
         removeButton.setAttribute('data-card', i)
         createNewCard.setAttribute('data-card', i)
+        createNewCard.setAttribute('data-category', category.category)
 
         // Stop Propagation Issues
         // New Event Listeners
         checkComplete.addEventListener('click', function(e){
-            editCheck(e, board, i, category)
+            editCheck(e, i, category)
         })
         submitField.addEventListener('click', function(e){
             e.preventDefault()
         })
         submitField.addEventListener('click', function(e){
-            submitChangeCard(e, board, i, category)
+            submitChangeCard(e, i, category)
         })
         createTitleInput.addEventListener('click', function(e){
             e.stopPropagation();
@@ -101,13 +104,13 @@ function displayInnerCards(category, board, randomColor) {
             e.stopPropagation();
         })
         editButton.addEventListener('click', function(e) {
-            editCard(e, board, i)
+            editCard(e, i)
         })
         removeButton.addEventListener('click', function(e) {
             e.stopPropagation();
         })
         removeButton.addEventListener('click', function(e) {
-            removeInnerCard(e, board, category)
+            removeInnerCard(e, category)
         })
         removeButton.innerHTML = "X"
 

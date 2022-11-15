@@ -11,7 +11,9 @@ function cardFactory(title, description, date, complete) {
     }
 }
 
-function addCard(e, board) {
+function addCard(e) {
+    const boardString = window.localStorage.getItem('board')
+    const board = JSON.parse(boardString)
     const inputCategory = e.target.dataset.category
     let index = board.findIndex(x => x.category === inputCategory)
 
@@ -28,7 +30,6 @@ function addCard(e, board) {
         DOMElements.createCardError.innerHTML = "Please enter a valid date"
         return
     }
-    
     for(let i = 0; i < board[index].todo.length; i++) {
         const findDupe = board[index].todo[i].title.includes(newTitle)
         if(findDupe) {
@@ -44,18 +45,24 @@ function addCard(e, board) {
         DOMElements.createCardError.innerHTML = "Please enter a valid title"
         return
     }
+
     DOMElements.createCardError.innerHTML = ""
     let generateColor = Math.floor(Math.random()*16777215).toString(16);
     let randomColor = `#${generateColor}50`
     const newCard = new cardFactory(newTitle,newDescription,newDate,false)
     board[index].todo.push(newCard)
-    displayInnerCards(board[index], board, randomColor)
+    const boardtoString = JSON.stringify(board)
+    window.localStorage.setItem('board', boardtoString)
+
+    displayInnerCards(board[index], randomColor)
     DOMElements.title.value = ""
     DOMElements.description.value = ""
     DOMElements.date.value = ""
 }
 
-function addCategory(board) {
+function addCategory() {
+    const boardString = window.localStorage.getItem('board')
+    const board = JSON.parse(boardString)
     const inputCategory = DOMElements.category.value
 
     if(inputCategory.length < 1) {
@@ -75,7 +82,9 @@ function addCategory(board) {
     DOMElements.ifEditing.value = inputCategory
 
     board.push({category: inputCategory, todo: [{title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false}]})
-    displayCategories(board)
+    const boardtoString = JSON.stringify(board)
+    window.localStorage.setItem('board', boardtoString)
+    displayCategories()
 }
 
 export { addCard, addCategory }

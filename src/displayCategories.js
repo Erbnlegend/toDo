@@ -5,7 +5,10 @@ import {edit, submitChange} from './edit'
 import {displayInnerCards} from './displayCards'
 import { createElement, MoreHorizontal} from './lucide.js';
 
-function displayCategories(board) {
+function displayCategories() {
+    const boardString = window.localStorage.getItem('board')
+    const board = JSON.parse(boardString)
+
     DOMElements.cards.innerHTML = ""
     DOMElements.currentPlace.innerHTML = `What are you working on today?`
     let randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -76,7 +79,7 @@ function displayCategories(board) {
         })
         submitField.addEventListener('click', function(e){
             e.preventDefault()
-            submitChange(e, board, item)
+            submitChange(e, item)
         })
         createInput.addEventListener('click', function(e){
             e.stopPropagation();
@@ -86,16 +89,16 @@ function displayCategories(board) {
         })
         editButton.addEventListener('click', function(e) {
             e.stopPropagation();
-            edit(e, board, item)
+            edit(e, item)
         })
         removeButton.addEventListener('click', function(e) {
             e.stopPropagation();
         })
         removeButton.addEventListener('click', function(e) {
-            removeCategory(e, board, item)
+            removeCategory(e, item)
         })
         createNewCard.addEventListener('click', function(e) {
-            displayInnerCards(board[item], board, e.target.style.backgroundColor)
+            displayInnerCards(board[item], e.target.style.backgroundColor)
         })
         DOMElements.cards.append(createNewCard)
         DOMElements.category.value = ""

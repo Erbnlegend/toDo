@@ -1,17 +1,23 @@
 import {displayInnerCards} from './displayCards'
 import {displayCategories} from './displayCategories'
 
-function removeCategory(e, board, category) {
+
+const boardString = window.localStorage.getItem('board')
+const board = JSON.parse(boardString)
+
+function removeCategory(e, category) {
     let message = `Are you sure you want to remove the ${board[category].category} category?`
     if(confirm(message)) {
         board.splice(category, 1)
-        displayCategories(board)
+        const boardtoString = JSON.stringify(board)
+        window.localStorage.setItem('board', boardtoString)
+        displayCategories()
     }
     return
     
 }
 
-function removeInnerCard(e, board, category) {
+function removeInnerCard(e, category) {
     const targetRemove = e.target.dataset.card
     const dataCard = e.target.dataset.card
     let generateColor = Math.floor(Math.random()*16777215).toString(16);
@@ -19,7 +25,9 @@ function removeInnerCard(e, board, category) {
     let message = `Are you sure you want to remove the ${category.todo[targetRemove].title} card?`
     if(confirm(message)) {
         category.todo.splice(dataCard, 1)
-        displayInnerCards(category, board, randomColor)
+        const boardtoString = JSON.stringify(board)
+        window.localStorage.setItem('board', boardtoString)
+        displayInnerCards(category, randomColor)
     }
     return
 }
