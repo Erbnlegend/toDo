@@ -16,13 +16,13 @@ const checkData = new Promise(function(resolve, reject) {
 
 checkData.then(function (result) {
   console.log(result)
-  displayCategories()
 }).catch((error) => {
- console.log(error)
- const initBoard = [{ category: 'work', todo: [{ title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false }] }]
- const stringifyBoard = JSON.stringify(initBoard)
- localStorage.setItem('board', stringifyBoard)
- displayCategories()
+  console.log(error)
+  const initBoard = [{ category: 'work', todo: [{ title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false }] }]
+  const stringifyBoard = JSON.stringify(initBoard)
+  localStorage.setItem('board', stringifyBoard)
+}).finally(() => {
+  displayCategories()
 })
 
 const getLocalData = function() {
