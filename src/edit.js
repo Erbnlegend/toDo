@@ -7,7 +7,7 @@ function edit (e, item) {
   const editText = document.getElementById(`edit${item}`)
   const submitField = document.getElementById(`submit${item}`)
 
-  editText.addEventListener('input', (e) => {
+  editText.addEventListener('input', () => {
     if (editText.value === '') {
       editText.placeholder = 'We put this here (heehee)'
     } else {
@@ -56,14 +56,14 @@ function editCard (e, i) {
   const editDateField = document.getElementById(`editDate${i}`)
   const submitField = document.getElementById(`submit${i}`)
 
-  editTitleField.addEventListener('input', (e) => {
+  editTitleField.addEventListener('input', () => {
     if (editTitleField.value === '') {
       editTitleField.placeholder = 'We put this here (heehee)'
     } else {
       editTitleField.placeholder = ''
     }
   })
-  editDescriptionField.addEventListener('input', (e) => {
+  editDescriptionField.addEventListener('input', () => {
     if (editDescriptionField.value === '') {
       editDescriptionField.placeholder = 'We put this here (heehee)'
     } else {
