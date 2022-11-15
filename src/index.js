@@ -5,6 +5,9 @@ import { addCard, addCategory } from './cardFactories'
 import { showCategoryForm, showCardForm} from './UIController'
 import { displayCategories } from './displayCategories'
 
+const initBoard = [{category: 'work', todo: [{title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false, complete: false}]}]
+const stringifyBoard = JSON.stringify(initBoard)
+window.localStorage.setItem('board', stringifyBoard)
 displayCategories()
 
 // Event Listener 

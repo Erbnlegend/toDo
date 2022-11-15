@@ -1,11 +1,9 @@
 import {displayInnerCards} from './displayCards'
 import {displayCategories} from './displayCategories'
 
-
-const boardString = window.localStorage.getItem('board')
-const board = JSON.parse(boardString)
-
 function removeCategory(e, category) {
+    const boardString = window.localStorage.getItem('board')
+    const board = JSON.parse(boardString)
     let message = `Are you sure you want to remove the ${board[category].category} category?`
     if(confirm(message)) {
         board.splice(category, 1)
@@ -18,6 +16,8 @@ function removeCategory(e, category) {
 }
 
 function removeInnerCard(e, category) {
+    const boardString = window.localStorage.getItem('board')
+    const board = JSON.parse(boardString)
     const targetRemove = e.target.dataset.card
     const dataCard = e.target.dataset.card
     let generateColor = Math.floor(Math.random()*16777215).toString(16);
