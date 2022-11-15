@@ -6,6 +6,14 @@ function edit (e, item) {
   const editText = document.getElementById(`edit${item}`)
   const submitField = document.getElementById(`submit${item}`)
 
+  editText.addEventListener('input', (e) => {
+    if (editText.value === '') {
+      editText.placeholder = 'We put this here (heehee)'
+    } else {
+      editText.placeholder = ''
+    }
+  })
+
   editButton.classList.toggle('editButtonReset')
   field.style.display = 'none'
   editText.style.display = 'block'
@@ -20,10 +28,16 @@ function submitChange (e, item) {
   const editText = document.getElementById(`edit${item}`)
   const submitField = document.getElementById(`submit${item}`)
   field.innerHTML = editText.value
-  board[item].category = editText.value
 
+  if (editText.value === '') {
+    editText.value = 'We put this here (heehee)'
+  } else {
+    editText.placeholder = ''
+  }
+
+  board[item].category = editText.value
   const boardtoString = JSON.stringify(board)
-  window.localStorage.setItem('board', boardtoString)
+  localStorage.setItem('board', boardtoString)
 
   editButton.classList.toggle('editButtonReset')
   field.style.display = 'block'
@@ -41,6 +55,21 @@ function editCard (e, i) {
   const dateField = document.getElementById(`date${i}`)
   const editDateField = document.getElementById(`editDate${i}`)
   const submitField = document.getElementById(`submit${i}`)
+
+  editTitleField.addEventListener('input', (e) => {
+    if (editTitleField.value === '') {
+      editTitleField.placeholder = 'We put this here (heehee)'
+    } else {
+      editTitleField.placeholder = ''
+    }
+  })
+  editDescriptionField.addEventListener('input', (e) => {
+    if (editDescriptionField.value === '') {
+      editDescriptionField.placeholder = 'We put this here (heehee)'
+    } else {
+      editDescriptionField.placeholder = ''
+    }
+  })
 
   editButton.classList.toggle('editButtonReset')
   titleField.style.display = 'none'
@@ -71,6 +100,18 @@ function submitChangeCard (e, i, category) {
 
   const submitField = document.getElementById(`submit${i}`)
 
+  if (editTitleField.value === '') {
+    editTitleField.value = 'We put this here (heehee)'
+  } else {
+    editTitleField.placeholder = ''
+  }
+
+  if (editDescriptionField.value === '') {
+    editDescriptionField.value = 'We put this here (heehee)'
+  } else {
+    editDescriptionField.placeholder = ''
+  }
+  
   titleField.innerHTML = editTitleField.value
   descriptionField.innerHTML = editDescriptionField.value
   dateField.innerHTML = editDateField.value
