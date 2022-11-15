@@ -1,4 +1,5 @@
 import { displayCategories } from './displayCategories'
+import { getLocalData } from './index'
 
 function edit (e, item) {
   const editButton = document.getElementById(`editButton${item}`)
@@ -21,8 +22,7 @@ function edit (e, item) {
 }
 
 function submitChange (e, item) {
-  const boardString = localStorage.getItem('board')
-  const board = JSON.parse(boardString)
+  const board = getLocalData()
   const editButton = document.getElementById(`editButton${item}`)
   const field = document.getElementById(item)
   const editText = document.getElementById(`edit${item}`)
@@ -84,8 +84,7 @@ function editCard (e, i) {
 }
 
 function submitChangeCard (e, i, category) {
-  const boardString = localStorage.getItem('board')
-  const board = JSON.parse(boardString)
+  const board = getLocalData()
   const editButton = document.getElementById(`editButton${i}`)
   const innerCategory = category.category
   const index = board.findIndex(x => x.category === innerCategory)
@@ -135,8 +134,7 @@ function submitChangeCard (e, i, category) {
 }
 
 function editCheck (e, i, category) {
-  const boardString = localStorage.getItem('board')
-  const board = JSON.parse(boardString)
+  const board = getLocalData()
 
   const changeCheck = document.getElementById(`editCheck${i}`)
   const innerCategory = category.category

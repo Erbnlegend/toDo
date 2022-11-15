@@ -1,6 +1,7 @@
 import { DOMElements } from './dom'
 import { displayCategories } from './displayCategories'
 import { displayInnerCards } from './displayCards'
+import { getLocalData } from './index'
 
 function CardFactory (title, description, date, complete) {
   return {
@@ -12,8 +13,8 @@ function CardFactory (title, description, date, complete) {
 }
 
 function addCard (e) {
-  const boardString = localStorage.getItem('board')
-  const board = JSON.parse(boardString)
+  const board = getLocalData()
+
   const inputCategory = e.target.dataset.category
   const index = board.findIndex(x => x.category === inputCategory)
 
@@ -51,7 +52,7 @@ function addCard (e) {
   const newCard = new CardFactory(newTitle, newDescription, newDate, false)
   board[index].todo.push(newCard)
   const boardtoString = JSON.stringify(board)
-  window.localStorage.setItem('board', boardtoString)
+  localStorage.setItem('board', boardtoString)
 
   displayInnerCards(board[index], randomColor)
   DOMElements.title.value = ''
@@ -60,8 +61,7 @@ function addCard (e) {
 }
 
 function addCategory () {
-  const boardString = localStorage.getItem('board')
-  const board = JSON.parse(boardString)
+  const board = getLocalData()
   const inputCategory = DOMElements.category.value
 
   if (inputCategory.length < 1) {

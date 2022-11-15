@@ -4,10 +4,10 @@ import { removeCategory } from './remove'
 import { edit, submitChange } from './edit'
 import { displayInnerCards } from './displayCards'
 import { createElement, MoreHorizontal } from './lucide.js'
+import { getLocalData } from './index'
 
 function displayCategories () {
-  const boardString = localStorage.getItem('board')
-  const board = JSON.parse(boardString)
+  const board = getLocalData()
 
   DOMElements.cards.innerHTML = ''
   DOMElements.currentPlace.innerHTML = 'What are you working on today?'
