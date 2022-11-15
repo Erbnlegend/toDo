@@ -2,7 +2,7 @@ import {displayInnerCards} from './displayCards'
 import {displayCategories} from './displayCategories'
 
 function removeCategory(e, category) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     let message = `Are you sure you want to remove the ${board[category].category} category?`
     if(confirm(message)) {
@@ -16,7 +16,7 @@ function removeCategory(e, category) {
 }
 
 function removeInnerCard(e, category) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     const targetRemove = e.target.dataset.card
     const dataCard = e.target.dataset.card

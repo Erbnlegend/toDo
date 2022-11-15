@@ -5,7 +5,7 @@ import {editCard, submitChangeCard, editCheck} from './edit'
 import { createElement, MoreHorizontal, CheckCircle } from './lucide.js';
 
 function displayInnerCards(category, randomColor) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     DOMElements.currentPlace.innerHTML = `What part of ${category.category} are you working on today?`
     DOMElements.cards.innerHTML = ""

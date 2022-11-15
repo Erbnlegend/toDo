@@ -12,7 +12,7 @@ function cardFactory(title, description, date, complete) {
 }
 
 function addCard(e) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     const inputCategory = e.target.dataset.category
     let index = board.findIndex(x => x.category === inputCategory)
@@ -61,7 +61,7 @@ function addCard(e) {
 }
 
 function addCategory() {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     const inputCategory = DOMElements.category.value
 
@@ -83,7 +83,7 @@ function addCategory() {
 
     board.push({category: inputCategory, todo: [{title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false}]})
     const boardtoString = JSON.stringify(board)
-    window.localStorage.setItem('board', boardtoString)
+    localStorage.setItem('board', boardtoString)
     displayCategories()
 }
 

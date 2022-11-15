@@ -16,7 +16,7 @@ function edit(e, item) {
 }
 
 function submitChange(e, item) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     const editButton = document.getElementById(`editButton${item}`)
     const field = document.getElementById(item)
@@ -58,7 +58,7 @@ function editCard(e, i) {
 }
 
 function submitChangeCard(e, i, category) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
     const editButton = document.getElementById(`editButton${i}`)
     const innerCategory = category.category
@@ -98,7 +98,7 @@ function submitChangeCard(e, i, category) {
 }
 
 function editCheck(e, i, category) {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
 
     const changeCheck = document.getElementById(`editCheck${i}`)
@@ -110,13 +110,13 @@ function editCheck(e, i, category) {
         changeCheck.classList.remove('greenCompleted')
         board[index].todo[i].complete = false
         const boardtoString = JSON.stringify(board)
-        window.localStorage.setItem('board', boardtoString)
+        localStorage.setItem('board', boardtoString)
     }
     if(!ifCompleted) {
         changeCheck.classList.add('greenCompleted')
         board[index].todo[i].complete = true
         const boardtoString = JSON.stringify(board)
-        window.localStorage.setItem('board', boardtoString)
+        localStorage.setItem('board', boardtoString)
     }
 }
 

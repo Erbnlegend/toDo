@@ -5,12 +5,11 @@ import { addCard, addCategory } from './cardFactories'
 import { showCategoryForm, showCardForm} from './UIController'
 import { displayCategories } from './displayCategories'
 
-
-console.log(window.localStorage)
-if(window.localStorage.length < 1) {
+const storageParse = JSON.parse(localStorage.getItem('board'))
+if(storageParse === null) {
     const initBoard = [{category: 'work', todo: [{title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false}]}]
     const stringifyBoard = JSON.stringify(initBoard)
-    window.localStorage.setItem('board', stringifyBoard)
+    localStorage.setItem('board', stringifyBoard)
 }
 
 displayCategories()

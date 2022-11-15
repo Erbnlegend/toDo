@@ -6,7 +6,7 @@ import {displayInnerCards} from './displayCards'
 import { createElement, MoreHorizontal} from './lucide.js';
 
 function displayCategories() {
-    const boardString = window.localStorage.getItem('board')
+    const boardString = localStorage.getItem('board')
     const board = JSON.parse(boardString)
 
     DOMElements.cards.innerHTML = ""
