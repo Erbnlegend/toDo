@@ -5,7 +5,6 @@ function removeCategory(e, board, category) {
     let message = `Are you sure you want to remove the ${board[category].category} category?`
     if(confirm(message)) {
         board.splice(category, 1)
-        console.log(board)
         displayCategories(board)
     }
     return

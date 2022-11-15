@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "date-fns": "^2.29.3",
-    "feather-icons": "^4.29.0",
+    "lucide": "^0.100.0",
     "normalize.css": "^8.0.1"
   }
 }

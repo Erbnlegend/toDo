@@ -5,12 +5,6 @@ const DOMElements = {
     cardForm: document.getElementById('cardForm'),
     addNewCard: document.getElementById('addNewCard'),
     updateCardForm: document.getElementById('updateCardForm'),
-    // updateCard: document.getElementById('updateCard'),
-    // closeUpdateCard: document.getElementById('closeUpdateCard'),
-    // updateCategory: document.getElementById('updateCategory'),
-    // updateTitle: document.getElementById('updateTitle'),
-    // updateDescription: document.getElementById('updateDescription'),
-    // updateDate: document.getElementById('updateDate'),
     addNewCategory: document.getElementById('addNewCategory'),
     title: document.getElementById('title'),
     description: document.getElementById('description'),
@@ -25,7 +19,9 @@ const DOMElements = {
     editButton: document.querySelectorAll('.editButton'),
     createCatError: document.getElementById('createCatError'),
     createCardError: document.getElementById('createCardError'),
-    createUpdateCardError: document.getElementById('createUpdateCardError')
+    createUpdateCardError: document.getElementById('createUpdateCardError'),
+    disappearCat: document.getElementById('disappearCat'),
+    disappearCard: document.getElementById('disappearCard')
 }
 
 export {DOMElements}

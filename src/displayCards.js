@@ -1,7 +1,8 @@
 import {DOMElements} from './dom'
 import {showCardForm} from './UIController'
 import {removeInnerCard} from './remove'
-import {editCard, submitChangeCard} from './edit'
+import {editCard, submitChangeCard, editCheck} from './edit'
+import { createElement, MoreHorizontal, CheckCircle } from './lucide.js';
 
 function displayInnerCards(category, board, randomColor) {
     DOMElements.currentPlace.innerHTML = `What part of ${category.category} are you working on today?`
@@ -64,11 +65,19 @@ function displayInnerCards(category, board, randomColor) {
 
                 
         // Edit Button
-        const editButton = document.createElement('div')
+        const editButton = createElement(MoreHorizontal)
         editButton.setAttribute('class', 'editButton cardEditButton')
         editButton.setAttribute('data-category', category.todo[i].title)
         editButton.setAttribute('id', `editButton${i}`)
-        editButton.innerHTML = '...'
+
+        // checkComplete Button
+        const checkComplete = createElement(CheckCircle)
+        checkComplete.setAttribute('class', 'editCheck')
+        checkComplete.setAttribute('id', `editCheck${i}`)
+        const ifCompleted = category.todo[i].complete
+        if(ifCompleted) {
+            checkComplete.setAttribute('class', 'editCheck greenCompleted')
+        }
 
         // pass index number
         removeButton.setAttribute('data-card', i)
@@ -76,9 +85,11 @@ function displayInnerCards(category, board, randomColor) {
 
         // Stop Propagation Issues
         // New Event Listeners
+        checkComplete.addEventListener('click', function(e){
+            editCheck(e, board, i, category)
+        })
         submitField.addEventListener('click', function(e){
             e.preventDefault()
-            e.stopPropagation()
         })
         submitField.addEventListener('click', function(e){
             submitChangeCard(e, board, i, category)
@@ -103,7 +114,7 @@ function displayInnerCards(category, board, randomColor) {
         // Creates the card for the array
         const text = document.createElement('div')
         text.setAttribute('id', i)
-        text.textContent = category.todo[i].title
+        text.textContent = `${category.todo[i].title}`
         // Make the new Card
         createNewCard.append(text)
         createNewCard.append(createTitleInput)
@@ -113,6 +124,7 @@ function displayInnerCards(category, board, randomColor) {
         createNewCard.append(createDate)
         createNewCard.append(submitField)
         createNewCard.append(editButton)
+        createNewCard.append(checkComplete)
         createNewCard.append(removeButton)
 
         // Append new card

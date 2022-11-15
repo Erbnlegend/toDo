@@ -3,6 +3,7 @@ import {showCategoryForm} from './UIController'
 import {removeCategory } from './remove'
 import {edit, submitChange} from './edit'
 import {displayInnerCards} from './displayCards'
+import { createElement, MoreHorizontal} from './lucide.js';
 
 function displayCategories(board) {
     DOMElements.cards.innerHTML = ""
@@ -22,7 +23,6 @@ function displayCategories(board) {
         const text = document.createElement('div')
         text.setAttribute('id', item)
 
-        const displayNumber = document.createElement('div')
         // Remove button
         const removeButton = document.createElement('div')
         removeButton.setAttribute('class', 'removeButton')
@@ -43,15 +43,15 @@ function displayCategories(board) {
         submitField.style.display = 'none'
                 
         // Edit Button
-        const editButton = document.createElement('div')
+        const editButton = createElement(MoreHorizontal)
         editButton.setAttribute('class', 'editButton')
         editButton.setAttribute('data-category', board[item].category)
         editButton.setAttribute('id', `editButton${item}`)
-        editButton.innerHTML = '...'
 
         // Number in category array
+        const displayNumber = document.createElement('div')
         displayNumber.setAttribute('class', 'numberRound')
-        displayNumber.innerHTML = board[item].todo.length
+        displayNumber.innerHTML = `${board[item].todo.length}`
         displayNumber.style.backgroundColor = `#${randomColor}80`;
         displayNumber.setAttribute('data-category', item)
 
@@ -69,6 +69,7 @@ function displayCategories(board) {
 
         // Stop Propagation Issues
         // New Event Listeners
+        
         submitField.addEventListener('click', function(e){
             e.preventDefault()
             e.stopPropagation()
@@ -84,6 +85,7 @@ function displayCategories(board) {
             e.stopPropagation();
         })
         editButton.addEventListener('click', function(e) {
+            e.stopPropagation();
             edit(e, board, item)
         })
         removeButton.addEventListener('click', function(e) {

@@ -1,11 +1,13 @@
-import {displayCategories, displayInnerCategories} from './displayCards'
+import {displayCategories} from './displayCategories'
+import {displayInnerCards} from './displayCards'
 
 function edit(e, board, item) {
     const editButton = document.getElementById(`editButton${item}`)
     const field = document.getElementById(item)
     const editText = document.getElementById(`edit${item}`)
     const submitField = document.getElementById(`submit${item}`)
-    editButton.style.display = 'none'
+
+    editButton.classList.toggle('editButtonReset')
     field.style.display = 'none'
     editText.style.display = 'block'
     submitField.style.display = 'block'
@@ -18,10 +20,12 @@ function submitChange(e, board, item) {
     const submitField = document.getElementById(`submit${item}`)
     field.innerHTML = editText.value
     board[item].category = editText.value
-    editButton.style.display = 'block'
-    field.style.display = 'grid'
+
+    editButton.classList.toggle('editButtonReset')
+    field.style.display = 'block'
     editText.style.display = 'none'
     submitField.style.display = 'none'
+    displayCategories(board)
 }
 
 function editCard(e, board, i) {
@@ -34,10 +38,11 @@ function editCard(e, board, i) {
     const editDateField = document.getElementById(`editDate${i}`)
     const submitField = document.getElementById(`submit${i}`)
 
-    editButton.style.display = 'none'
+    editButton.classList.toggle('editButtonReset')
     titleField.style.display = 'none'
     descriptionField.style.display = 'none'
     dateField.style.display = 'none'
+    submitField.style.display = 'block'
 
 
     editTitleField.style.display = 'block'
@@ -69,7 +74,7 @@ function submitChangeCard(e, board, i, category) {
     board[index].todo[i].description = editDescriptionField.value
     board[index].todo[i].date = editDateField.value
     
-    editButton.style.display = 'block'
+    editButton.classList.toggle('editButtonReset')
     titleField.style.display = 'block'
     descriptionField.style.display = 'block'
     dateField.style.display = 'block'
@@ -81,4 +86,19 @@ function submitChangeCard(e, board, i, category) {
     submitField.style.display = 'none'
 }
 
-export {edit, submitChange, editCard, submitChangeCard}
+function editCheck(e, board, i, category) {
+    const changeCheck = document.getElementById(`editCheck${i}`)
+    const innerCategory = category.category
+    let index = board.findIndex(x => x.category === innerCategory)
+    const ifCompleted = board[index].todo[i].complete
+    if(ifCompleted){
+        changeCheck.classList.remove('greenCompleted')
+        board[index].todo[i].complete = false
+    }
+    if(!ifCompleted) {
+        changeCheck.classList.add('greenCompleted')
+        board[index].todo[i].complete = true
+    }
+}
+
+export {edit, submitChange, editCard, submitChangeCard, editCheck}

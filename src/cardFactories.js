@@ -1,7 +1,6 @@
 import { DOMElements } from './dom'
 import {displayCategories} from './displayCategories'
 import {displayInnerCards} from './displayCards'
-import {showCardForm, showCategoryForm} from './UIController'
 
 function cardFactory(title, description, date, complete) {
     return {
@@ -21,7 +20,14 @@ function addCard(e, board) {
     const newDescription = DOMElements.description.value
     const newDate = DOMElements.date.value
 
-    // let findDupe = board[i].todo[inputCategory].includes(newTitle)
+    if(newDescription === "") {
+        DOMElements.createCardError.innerHTML = "Please enter a description"
+        return
+    }
+    if(newDate === "") {
+        DOMElements.createCardError.innerHTML = "Please enter a valid date"
+        return
+    }
     
     for(let i = 0; i < board[index].todo.length; i++) {
         const findDupe = board[index].todo[i].title.includes(newTitle)
@@ -41,7 +47,7 @@ function addCard(e, board) {
     DOMElements.createCardError.innerHTML = ""
     let generateColor = Math.floor(Math.random()*16777215).toString(16);
     let randomColor = `#${generateColor}50`
-    const newCard = cardFactory(newTitle,newDescription,newDate)
+    const newCard = new cardFactory(newTitle,newDescription,newDate,false)
     board[index].todo.push(newCard)
     displayInnerCards(board[index], board, randomColor)
     DOMElements.title.value = ""
@@ -57,7 +63,9 @@ function addCategory(board) {
         return
     }
     for(let i = 0; i < board.length; i++) {
-        const findDupe = board[i].category.includes(inputCategory)
+        let checkDupe = board[i].category
+        let testString = new RegExp("^" + checkDupe + "$")
+        let findDupe = testString.test(inputCategory)
         if(findDupe) {
             DOMElements.createCatError.innerHTML = 'A card with that title already exists'
             return
@@ -66,7 +74,7 @@ function addCategory(board) {
     DOMElements.createCatError.innerHTML = ""
     DOMElements.ifEditing.value = inputCategory
 
-    board.push({category: inputCategory, todo: [{title: 'hello!', description: 'Im a new Card', date: '', complete: false}]})
+    board.push({category: inputCategory, todo: [{title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false}]})
     displayCategories(board)
 }
 

@@ -14,16 +14,18 @@ body, button {
 }
 
 #cards input {
-    width: 98%;
+    position: relative;
+    width: 99%;
     text-align: center;
-    padding: 2px;
+    padding: 0;
+    margin: 0;
 }
 #cards input[type='submit'] {
     padding: 0;
     position: relative;
     left: 30%;
     width: 50%;
-    font-size: .5em;
+    font-size: .8em;
 }
 
 .background {
@@ -71,7 +73,7 @@ body, button {
 #cards {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     width: 75%;
     margin: 0 auto;
     gap: 20px;
@@ -105,7 +107,7 @@ body, button {
 .removeButton {
     position: relative;
     background-color: rgba(255, 0, 0, 0.568);
-    top: -40%;
+    top: -35%;
     left: 0;
     width: 15px;
     height: 15px;
@@ -119,19 +121,31 @@ body, button {
 }
 .editButton {
     position: relative;
-    top: -50%;
-    right: 0;
-    left: 90%;
-    width: 15px;
-    height: 15px;
+    width: 100%;
+    top: -45%;
+    right: -40%;
+    width: 30px;
+    height: 30px;
     z-index: 0;
-    font-size: .8em;
     border-radius: 200%;
-    padding: 3px;
-    text-align: center;
 }
+.editCheck {
+    position: relative;
+    bottom: -20%;
+    left: 35%;
+    height: 25px;
+    width: 25px;
+}
+.greenCompleted {
+    color: green;
+}
+
 .cardEditButton {
     top: -60%;
+}
+
+.editButtonReset {
+    z-index: -99;
 }
 
 #remove {
@@ -191,16 +205,19 @@ fieldset label {
     flex-direction: column;
     align-items: left;
 }
-#categoryForm, #cardForm, #updateCardForm {
+#categoryForm, #cardForm {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 35%;
     left: 25%;
-    font-size: 2em;
+    font-size: 1.5em;
     background-color: rgba(98, 201, 192, 0.85);
     border: var(--game-border);
     padding: 25px;
+}
+.disappear {
+    display: none !important;
 }
 
 /* Animations */

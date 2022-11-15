@@ -6,6 +6,9 @@ function showCategoryForm() {
     }
     if(DOMElements.categoryForm.classList.contains('swipeLeft')) {
         DOMElements.categoryForm.classList.toggle('swipeRight')
+        setTimeout(() => {
+            DOMElements.categoryForm.classList.toggle('disappear')
+        }, 300);
     }
     if(DOMElements.categoryForm.classList.contains('swipeRight') && DOMElements.categoryForm.classList.contains('swipeLeft')) {
         DOMElements.categoryForm.classList.toggle('swipeRight')
@@ -13,6 +16,7 @@ function showCategoryForm() {
         setTimeout(() => {
             DOMElements.categoryForm.classList.toggle('swipeRight')
         }, 200);
+
     }
 }
 
@@ -22,6 +26,9 @@ function showCardForm() {
     }
     if(DOMElements.cardForm.classList.contains('swipeLeft')) {
         DOMElements.cardForm.classList.toggle('swipeRight')
+        setTimeout(() => {
+            DOMElements.cardForm.classList.toggle('disappear')
+        }, 300);
     }
     if(DOMElements.cardForm.classList.contains('swipeRight') && DOMElements.cardForm.classList.contains('swipeLeft')) {
         DOMElements.cardForm.classList.toggle('swipeRight')
@@ -31,21 +38,5 @@ function showCardForm() {
         }, 200);
     }
 }
-
-// function showUpdateCardForm() {
-//     if(DOMElements.updateCardForm.classList.contains('swipeRight')) {
-//         DOMElements.updateCardForm.classList.toggle('swipeLeft')
-//     }
-//     if(DOMElements.updateCardForm.classList.contains('swipeLeft')) {
-//         DOMElements.updateCardForm.classList.toggle('swipeRight')
-//     }
-//     if(DOMElements.updateCardForm.classList.contains('swipeRight') && DOMElements.cardForm.classList.contains('swipeLeft')) {
-//         DOMElements.updateCardForm.classList.toggle('swipeRight')
-//         DOMElements.updateCardForm.classList.toggle('swipeLeft')
-//         setTimeout(() => {
-//             DOMElements.updateCardForm.classList.toggle('swipeRight')
-//         }, 200);
-//     }
-// }
 
 export {showCategoryForm, showCardForm }
