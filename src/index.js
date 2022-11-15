@@ -5,33 +5,24 @@ import { addCard, addCategory } from './cardFactories'
 import { showCategoryForm, showCardForm } from './UIController'
 import { displayCategories } from './displayCategories'
 
-// const storageParse = JSON.parse(localStorage.getItem('board'))
-// if (storageParse === null) {
-//   const initBoard = [{ category: 'work', todo: [{ title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false }] }]
-//   const stringifyBoard = JSON.stringify(initBoard)
-//   localStorage.setItem('board', stringifyBoard)
-// }
-
 const checkData = new Promise(function(resolve, reject) {
   const boardString = localStorage.getItem('board')
   if (boardString === null) {
-    reject('Failure! Initializing Board with default values')
-    const initBoard = [{ category: 'work', todo: [{ title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false }] }]
-    const stringifyBoard = JSON.stringify(initBoard)
-    localStorage.setItem('board', stringifyBoard)
+    reject('Initializing Board with default values')
   } else {
-    resolve('Success!')
+    resolve('Initializing Board!')
   }
 })
 
 checkData.then(function (result) {
   console.log(result)
-  console.log('Initialized App')
-}).catch(function () {
-  console.log('The App has Started with Default Data')
-}).finally(function () {
-  getLocalData()
   displayCategories()
+}).catch((error) => {
+ console.log(error)
+ const initBoard = [{ category: 'work', todo: [{ title: 'hello!', description: 'Im a new Card', date: '2022-01-01', complete: false }] }]
+ const stringifyBoard = JSON.stringify(initBoard)
+ localStorage.setItem('board', stringifyBoard)
+ displayCategories()
 })
 
 const getLocalData = function() {
