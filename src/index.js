@@ -1,3 +1,4 @@
+import './index.html'
 import './style.css'
 import './normalize.css'
 import { DOMElements } from './dom'
